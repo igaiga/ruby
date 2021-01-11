@@ -5884,26 +5884,6 @@ rb_ary_min(int argc, VALUE *argv, VALUE ary)
     return result;
 }
 
-/*
- *  call-seq:
- *    array.minmax -> [min_val, max_val]
- *    array.minmax {|a, b| ... } -> [min_val, max_val]
- *
- *  Returns a new 2-element \Array containing the minimum and maximum values
- *  from +self+, either per method <tt><=></tt> or per a given block:.
- *
- *  When no block is given, each element in +self+ must respond to method <tt><=></tt>
- *  with an \Integer;
- *  returns a new 2-element \Array containing the minimum and maximum values
- *  from +self+, per method <tt><=></tt>:
- *    [0, 1, 2].minmax # => [0, 2]
- *
- *  When a block is given, the block must return an \Integer;
- *  the block is called <tt>self.size-1</tt> times to compare elements;
- *  returns a new 2-element \Array containing the minimum and maximum values
- *  from +self+, per the block:
- *    ['0', '00', '000'].minmax {|a, b| a.size <=> b.size } # => ["0", "000"]
- */
 static VALUE
 rb_ary_minmax(VALUE ary)
 {
@@ -8171,7 +8151,6 @@ Init_Array(void)
 
     rb_define_method(rb_cArray, "max", rb_ary_max, -1);
     rb_define_method(rb_cArray, "min", rb_ary_min, -1);
-    rb_define_method(rb_cArray, "minmax", rb_ary_minmax, 0);
 
     rb_define_method(rb_cArray, "uniq", rb_ary_uniq, 0);
     rb_define_method(rb_cArray, "uniq!", rb_ary_uniq_bang, 0);
